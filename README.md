@@ -12,3 +12,7 @@ Currently, two official plugins are available:
 1. Maintain the package inside the project
 2. Maintain the package count by npm
 3. Maintain the consistency of patch/fix version across the development env
+
+# Props
+
+props in react component are analogous to inputs in function
