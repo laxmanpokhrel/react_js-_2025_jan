@@ -19,9 +19,9 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React + cool gyus!</h1>
+      <h1>Vite + React + cool guys!</h1>
 
-      <SayHi name="abc" isGoodHuman={false} />
+      <SayHi name="Alina" caste='Poudel' isGoodHuman={true} />
 
       <div className="card">
         <button

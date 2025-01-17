@@ -1,8 +1,8 @@
 function Component() {
   return (
     <div>
-      Component Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor,
-      officia.
+      <h2>Hello everyone!</h2>
+      <p>Welcome to my react journey!</p>
     </div>
   );
 }
