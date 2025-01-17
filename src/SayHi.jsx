@@ -1,8 +1,8 @@
 function SayHi(props) {
-  const { name,caste,isGoodHuman } = props;
+  const { name, caste, isGoodHuman } = props;
 
-  console.log('🚀 ~ SayHi ~ name:', name);
-  console.log('🚀 ~ SayHi ~ isGoodHuman:', isGoodHuman);
+  console.log("🚀 ~ SayHi ~ name:", name);
+  console.log("🚀 ~ SayHi ~ isGoodHuman:", isGoodHuman);
 
   //   Conditional rendering
   //   if (isGoodHuman === true) {
@@ -16,9 +16,10 @@ function SayHi(props) {
 
   return (
     <div>
-      Hi! {name} {caste}. {isGoodHuman === true
-        ? 'You are a good human'
-        : 'Please be better human.'}
+      Hi! {name} {caste}.{" "}
+      {isGoodHuman === true
+        ? "You are a good human"
+        : "Please be better human."}
     </div>
   );
 }
