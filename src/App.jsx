@@ -3,6 +3,7 @@ import Component from './Component';
 import SayHi from './SayHi';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
+import List from './List';
 import './App.css';
 
 function App() {
@@ -26,23 +27,29 @@ function App() {
     <>
       <div>
         <Component />
-
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
       </div>
       <h1>Vite + React + cool gyus!</h1>
 
       <SayHi name="abc" isGoodHuman={false} />
 
-      <div className="card">
-        {/* Parent Button */}
+      {/* Parent Button */}
+      <button
+        onClick={(e) => {
+          console.log('From Parent: ', e.target);
+          setCount((prevCount) => {
+            return prevCount + 1;
+          });
+          setTempCount((previousValue) => {
+            return previousValue + 10;
+          });
+        }}
+      >
+        count is {count}
+        {/* Child Button */}
         <button
           onClick={(e) => {
-            console.log('From Parent: ', e.target);
+            e.stopPropagation();
+            console.log('From Child: ', e.target);
             setCount((prevCount) => {
               return prevCount + 1;
             });
@@ -52,36 +59,16 @@ function App() {
           }}
         >
           count is {count}
-          {/* Child Button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              console.log('From Child: ', e.target);
-              setCount((prevCount) => {
-                return prevCount + 1;
-              });
-              setTempCount((previousValue) => {
-                return previousValue + 10;
-              });
-            }}
-          >
-            count is {count}
-          </button>
         </button>
+      </button>
 
-        <input
-          type="radio"
-          onChange={(e) => {
-            console.log('🚀 ~ App ~ e:', e.target.value);
-          }}
-        />
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more lore1
-      </p>
+      <input
+        type="text"
+        onChange={(e) => {
+          console.log('🚀 ~ App ~ e:', e.target.value);
+        }}
+      />
+      <List />
     </>
   );
 }
