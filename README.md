@@ -25,6 +25,10 @@ Requirements for TODO app:
 
    Text field + add button
 
+   Concept to understand:
+
+   1. Two way binding of state
+
 2. Delete Todo
 
 3. Edit Todo

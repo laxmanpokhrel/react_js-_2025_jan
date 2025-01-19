@@ -45,3 +45,45 @@ px => simply pixel
   border: none;
   padding: 0.5rem;
 }
+
+.todo-list {
+  margin-top: 2rem;
+}
+
+.todo-list-item {
+  display: flex;
+  gap: 1rem;
+}
+
+.todo-list-item p {
+  font-size: 2rem;
+}
+.todo-list-item button {
+  padding: 1rem;
+}
+
+.delete-btn {
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  background-color: lightcoral;
+  color: black;
+  font-weight: bold;
+}
+.edit-btn {
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  background-color: lavender;
+  font-weight: bold;
+}
+
+.cancel-edit-btn {
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  font-weight: bold;
+}
