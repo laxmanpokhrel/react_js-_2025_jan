@@ -16,3 +16,16 @@ Currently, two official plugins are available:
 # Props
 
 props in react component are analogous to inputs in function
+
+Requirements for TODO app:
+
+# As a user I want to:
+
+1. Add todo
+
+   Text field + add button
+
+2. Delete Todo
+
+3. Edit Todo
+4. List todo by status (done, pending)
