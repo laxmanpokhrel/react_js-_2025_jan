@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Todo() {
-  const [todoList, setTodoList] = useState(['Initial TODO']);
-  const [inputTodo, setInputTodo] = useState('');
+  const [todoList, setTodoList] = useState(["Initial TODO"]);
+  const [inputTodo, setInputTodo] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
 
   const onInputChangeHandler = (e) => {
     setInputTodo(() => {
@@ -13,27 +14,36 @@ export default function Todo() {
 
   const addTodoHandler = () => {
     // Add todo input to todo list
-    setTodoList((prevList) => {
-      return [...prevList, inputTodo];
-    });
+    isEditing
+      ? setTodoList((prevList) => {
+          const updatedList = [...prevList];
+          updatedList[editIndex] = inputTodo;
+          return updatedList;
+        })
+      : setTodoList((prevList) => {
+          return [...prevList, inputTodo];
+        });
     // Reset the todo input field
-    setInputTodo('');
+    setInputTodo("");
   };
 
   const editTodoHandler = (idx) => {
     setInputTodo(todoList[idx]);
     setIsEditing(true);
     // Write your logic here
+    setEditIndex(idx);
   };
 
   const deleteTodoHandler = (idx) => {
-    console.log('Index: ', idx);
+    console.log("Index: ", idx);
     // Write your logic here
+    const updatedList = todoList.filter((val, index) => index !== idx);
+    setTodoList(updatedList);
   };
 
   const handleOnEditCancelHandler = () => {
     setIsEditing(false);
-    setInputTodo('');
+    setInputTodo("");
   };
 
   return (
@@ -51,7 +61,7 @@ export default function Todo() {
           className="todo-input-btn"
           onClick={addTodoHandler}
         >
-          {isEditing ? 'Edit' : 'Add'} TOD0
+          {isEditing ? "Edit" : "Add"} TOD0
         </button>
         {isEditing ? (
           <button
@@ -65,7 +75,7 @@ export default function Todo() {
       <ul className="todo-list">
         {todoList.map((todo, index) => {
           return (
-            <li key={todo} className="todo-list-item">
+            <li key={index} className="todo-list-item">
               <p>{todo}</p>
               <button
                 type="button"
