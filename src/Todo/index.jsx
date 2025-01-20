@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function Todo() {
-  const [todoList, setTodoList] = useState(["Initial TODO"]);
-  const [inputTodo, setInputTodo] = useState("");
+  const [todoList, setTodoList] = useState(['Initial TODO']);
+  const [inputTodo, setInputTodo] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
@@ -15,16 +15,24 @@ export default function Todo() {
   const addTodoHandler = () => {
     // Add todo input to todo list
     isEditing
-      ? setTodoList((prevList) => {
+      ? // Update todo list logic
+        setTodoList((prevList) => {
           const updatedList = [...prevList];
           updatedList[editIndex] = inputTodo;
-          return updatedList;
+          // return updatedList;
+          prevList[editIndex] = inputTodo;
+          return prevList;
         })
-      : setTodoList((prevList) => {
-          return [...prevList, inputTodo];
+      : // Add todo logic here
+        setTodoList((prevList) => {
+          if (inputTodo.length) {
+            return [...prevList, inputTodo];
+          } else {
+            return prevList;
+          }
         });
     // Reset the todo input field
-    setInputTodo("");
+    setInputTodo('');
   };
 
   const editTodoHandler = (idx) => {
@@ -35,15 +43,17 @@ export default function Todo() {
   };
 
   const deleteTodoHandler = (idx) => {
-    console.log("Index: ", idx);
+    console.log('Index: ', idx);
     // Write your logic here
+
     const updatedList = todoList.filter((val, index) => index !== idx);
     setTodoList(updatedList);
+    // setTodoList(todoList.filter((val, index) => index !== idx));
   };
 
   const handleOnEditCancelHandler = () => {
     setIsEditing(false);
-    setInputTodo("");
+    setInputTodo('');
   };
 
   return (
@@ -61,7 +71,7 @@ export default function Todo() {
           className="todo-input-btn"
           onClick={addTodoHandler}
         >
-          {isEditing ? "Edit" : "Add"} TOD0
+          {isEditing ? 'Edit' : 'Add'} TOD0
         </button>
         {isEditing ? (
           <button
