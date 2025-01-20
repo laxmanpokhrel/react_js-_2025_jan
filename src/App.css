@@ -1,42 +1,89 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.todo {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: 3em;
+  align-items: center;
+  background-color: lightblue;
+  height: 100vh;
+  justify-content: center;
+  /* gap: 12px; */
+  gap: 0.5rem;
+  /* font-weight: bolder; */
+}
+/* Layout properties */
+/* flex =>  one direction(1D) layout - hand gap */
+/* grid =>  two direction(2D) layout - hand gap + hand side gap */
+/* 
+
+em
+if patent has 2px font-size
+if child is given font-size of 2em it will be 2*2px=4px
+
+rem
+base pixel of 16px
+
+px => simply pixel
+*/
+
+.todo-input {
+  display: flex;
+  gap: 1rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.todo-input-text-field {
+  height: 3rem;
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.todo-input-btn {
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.todo-list {
+  margin-top: 2rem;
 }
 
-.card {
-  padding: 2em;
+.todo-list-item {
+  display: flex;
+  gap: 1rem;
 }
 
-.read-the-docs {
-  color: #888;
+.todo-list-item p {
+  font-size: 2rem;
+}
+.todo-list-item button {
+  padding: 1rem;
+}
+
+.delete-btn {
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  background-color: lightcoral;
+  color: black;
+  font-weight: bold;
+}
+.edit-btn {
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  background-color: lavender;
+  font-weight: bold;
+}
+
+.cancel-edit-btn {
+  border-radius: 0.5rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  font-weight: bold;
 }
