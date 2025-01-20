@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
 export default function Todo() {
-  const [todoList, setTodoList] = useState(['Initial TODO']);
+  const [todoList, setTodoList] = useState([
+    { title: 'Initial TODO', status: 'pending' },
+  ]);
   const [inputTodo, setInputTodo] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
@@ -18,15 +20,15 @@ export default function Todo() {
       ? // Update todo list logic
         setTodoList((prevList) => {
           const updatedList = [...prevList];
-          updatedList[editIndex] = inputTodo;
-          // return updatedList;
-          prevList[editIndex] = inputTodo;
-          return prevList;
+          const todoObj = { title: inputTodo, status: 'pending' };
+          updatedList[editIndex] = todoObj;
+          return updatedList;
         })
       : // Add todo logic here
         setTodoList((prevList) => {
           if (inputTodo.length) {
-            return [...prevList, inputTodo];
+            const todoObj = { title: inputTodo, status: 'pending' };
+            return [...prevList, todoObj];
           } else {
             return prevList;
           }
@@ -36,7 +38,7 @@ export default function Todo() {
   };
 
   const editTodoHandler = (idx) => {
-    setInputTodo(todoList[idx]);
+    setInputTodo(todoList[idx].title);
     setIsEditing(true);
     // Write your logic here
     setEditIndex(idx);
@@ -54,6 +56,14 @@ export default function Todo() {
   const handleOnEditCancelHandler = () => {
     setIsEditing(false);
     setInputTodo('');
+  };
+
+  const checkBoxChangeHandler = (e) => {
+    console.log(
+      'checked value: ',
+      e.target.checked
+      // Update the status of the todo from pending to done
+    );
   };
 
   return (
@@ -86,7 +96,14 @@ export default function Todo() {
         {todoList.map((todo, index) => {
           return (
             <li key={index} className="todo-list-item">
-              <p>{todo}</p>
+              <input
+                onChange={checkBoxChangeHandler}
+                type="checkbox"
+                id={todo}
+                name={todo}
+                value={todo}
+              ></input>
+              <p>{todo.title}</p>
               <button
                 type="button"
                 className="edit-btn"
