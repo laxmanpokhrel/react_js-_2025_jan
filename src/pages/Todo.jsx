@@ -4,8 +4,8 @@ import { useState } from "react";
 const Todo = () => {
     const [inputTodo, setInputTodo] = useState('');
     const [todoList, setTodoList] = useState(['Initial Todo']);
-
- 
+    const [isEditing, setIsEditing] = useState(false);
+    const [editIndex, setEditIndex] = useState(null);
     const onChangeInputHandler = (e) =>{
         setInputTodo(() => {
             return e.target.value;
@@ -13,6 +13,13 @@ const Todo = () => {
     };
 
     const addTodoHandler = () => {
+        isEditing?
+        setTodoList((previousList) => {
+            const updatedList = [...previousList];
+            updatedList[editIndex] = inputTodo;
+            return updatedList;
+    })
+        :
         setTodoList((previousList) => {
             if(inputTodo.length>0) return [...previousList, inputTodo];
             else return previousList
@@ -20,6 +27,21 @@ const Todo = () => {
         setInputTodo('');
     };
 
+    const deleteTodoHandler = (idx) => {
+        const updateTodoList = todoList.filter((val, index) => idx !== index)
+        setTodoList(updateTodoList)
+    };
+
+    const cancelEditHandler = () => {
+        setIsEditing(false);
+        setInputTodo('');
+    }
+
+    const editTodoHandler = (idx) =>{
+        setInputTodo(todoList[idx])
+        setIsEditing(true)
+        setEditIndex(idx)
+    }
     return(
         <div className="todo">
             <h2 className="todo-title">Todo List</h2>
@@ -29,11 +51,23 @@ const Todo = () => {
                     onChange={onChangeInputHandler}
                     value={inputTodo}
                     type="text"
+                    placeholder="Enter your todo..."
                 />
-                <button className="btn" 
+                <button 
+                    className="btn" 
+                    type="button"
                     onClick={addTodoHandler}>
-                        Add Todo
+                        {isEditing? 'Edit Todo':'Add Todo'}                
                 </button>
+                {isEditing?(
+                <button
+                    className="btn btn-danger"
+                    type="button"
+                    onClick={cancelEditHandler}
+                    >
+                    Cancel Editing
+                </button>) : null    
+            }
                 <table className="table">
                     <thead>
                         <tr>
@@ -48,7 +82,24 @@ const Todo = () => {
                         <tr key={todoItem}>
                         <td>{index}</td>
                         <td>{todoItem}</td>
-                        <td>Edit | Delete</td>
+                        <td>
+                            <button 
+                                className="btn"
+                                type="button"
+                                onClick={() => editTodoHandler(index)}
+                            >
+                                Edit 
+                            </button>
+                            
+                            <button 
+                                className="btn btn-danger"
+                                type="button"
+                                onClick={() => deleteTodoHandler(index)}>
+                                Delete
+                            </button>
+                         
+                            
+                            </td>
                         </tr>
                     )
                 } )}
