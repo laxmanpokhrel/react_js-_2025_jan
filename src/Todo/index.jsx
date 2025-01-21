@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Todo() {
-  const [todoList, setTodoList] = useState(['Initial TODO']);
-  const [inputTodo, setInputTodo] = useState('');
+  const [todoList, setTodoList] = useState([
+    {
+      title: "Initial TODO",
+      status: "pending",
+    },
+  ]);
+  const [inputTodo, setInputTodo] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
@@ -18,32 +23,53 @@ export default function Todo() {
       ? // Update todo list logic
         setTodoList((prevList) => {
           const updatedList = [...prevList];
-          updatedList[editIndex] = inputTodo;
+          const todoObj = { title: inputTodo, status: "pending" };
+          updatedList[editIndex] = todoObj;
           // return updatedList;
-          prevList[editIndex] = inputTodo;
-          return prevList;
-        })
+          return updatedList;
+        },
+        setIsEditing (false)
+      )
       : // Add todo logic here
         setTodoList((prevList) => {
           if (inputTodo.length) {
-            return [...prevList, inputTodo];
+            const todoObj = { title: inputTodo, status: "pending" };
+            return [...prevList, todoObj];
           } else {
             return prevList;
           }
         });
     // Reset the todo input field
-    setInputTodo('');
+    setInputTodo("");
+  };
+  const checkBoxChangeHandler = (index) => {
+    console.log("Index: ", index);
+
+    setTodoList((prevList) =>
+      prevList.map((todoObj, idx) => {
+        if (idx === index) {
+          // Create a copy of the object
+          const updatedTodoObj = { ...todoObj };
+          // Update the status property
+          updatedTodoObj.status =
+            updatedTodoObj.status === "pending" ? "done" : "pending";
+          console.log("Updated Todo Status: ", updatedTodoObj.status);
+          return updatedTodoObj;
+        }
+        return todoObj;
+      })
+    );
   };
 
   const editTodoHandler = (idx) => {
-    setInputTodo(todoList[idx]);
+    setInputTodo(todoList[idx].title);
     setIsEditing(true);
     // Write your logic here
     setEditIndex(idx);
   };
 
   const deleteTodoHandler = (idx) => {
-    console.log('Index: ', idx);
+    console.log("Index: ", idx);
     // Write your logic here
 
     const updatedList = todoList.filter((val, index) => index !== idx);
@@ -53,7 +79,7 @@ export default function Todo() {
 
   const handleOnEditCancelHandler = () => {
     setIsEditing(false);
-    setInputTodo('');
+    setInputTodo("");
   };
 
   return (
@@ -71,7 +97,7 @@ export default function Todo() {
           className="todo-input-btn"
           onClick={addTodoHandler}
         >
-          {isEditing ? 'Edit' : 'Add'} TOD0
+          {isEditing ? "Edit" : "Add"} TOD0
         </button>
         {isEditing ? (
           <button
@@ -86,7 +112,16 @@ export default function Todo() {
         {todoList.map((todo, index) => {
           return (
             <li key={index} className="todo-list-item">
-              <p>{todo}</p>
+              <input
+                onChange={() => {
+                  checkBoxChangeHandler(index);
+                }}
+                type="checkbox"
+                id={todo}
+                name={todo}
+                value={todo}
+              ></input>
+              <p>{todo.title}</p>
               <button
                 type="button"
                 className="edit-btn"
