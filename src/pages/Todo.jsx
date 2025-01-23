@@ -1,10 +1,10 @@
-import { useState } from "react";
-import Navbar from "../components/Navbar";
+import { useState } from 'react';
+import Navbar from '../components/Navbar';
 
 const Todo = () => {
-  const [inputTodo, setInputTodo] = useState("");
+  const [inputTodo, setInputTodo] = useState('');
   const [todoList, setTodoList] = useState([
-    { title: "Make Todo", status: "pending" },
+    { title: 'Make Todo', status: 'pending' },
   ]);
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
@@ -20,7 +20,7 @@ const Todo = () => {
     isEditing
       ? setTodoList((previousList) => {
           const updatedList = [...previousList];
-          const updateTodo = { title: inputTodo, status: "pending" };
+          const updateTodo = { title: inputTodo, status: 'pending' };
           updatedList[editIndex] = updateTodo;
           setIsEditing(false);
           setEditIndex(null);
@@ -28,14 +28,14 @@ const Todo = () => {
         })
       : setTodoList((previousList) => {
           if (inputTodo.length) {
-            const newTodo = { title: inputTodo, status: "pending" };
+            const newTodo = { title: inputTodo, status: 'pending' };
             return [...previousList, newTodo];
           } else {
             return previousList;
           }
         });
 
-    setInputTodo("");
+    setInputTodo('');
   };
 
   const deleteTodoHandler = (idx) => {
@@ -45,7 +45,7 @@ const Todo = () => {
 
   const cancelEditHandler = () => {
     setIsEditing(false);
-    setInputTodo("");
+    setInputTodo('');
   };
 
   const editTodoHandler = (idx) => {
@@ -58,7 +58,7 @@ const Todo = () => {
     if (value) {
       setTodoList((previousList) => {
         const updateObject = previousList[idx];
-        const newObject = { ...updateObject, status: "done" };
+        const newObject = { ...updateObject, status: 'done' };
         const updatedList = [...previousList];
         updatedList[idx] = newObject;
         return updatedList;
@@ -66,7 +66,7 @@ const Todo = () => {
     } else {
       setTodoList((previousList) => {
         const updateObject = previousList[idx];
-        const newObject = { ...updateObject, status: "pending" };
+        const newObject = { ...updateObject, status: 'pending' };
         const updatedList = [...previousList];
         updatedList[idx] = newObject;
         return updatedList;
@@ -75,12 +75,13 @@ const Todo = () => {
   };
 
   const filterByStatus = (e) => {
-    setFilter(e.target.value)
+    setFilter(e.target.value);
   };
 
-  const filteredTodos = filter === 'all'
-                              ? todoList: 
-                              todoList.filter((todo) => todo.status === filter);
+  const filteredTodos =
+    filter === 'all'
+      ? todoList
+      : todoList.filter((todo) => todo.status === filter);
 
   return (
     <div className="todo">
@@ -96,7 +97,7 @@ const Todo = () => {
               placeholder="Enter your todo..."
             />
             <button className="btn" type="button" onClick={addTodoHandler}>
-              {isEditing ? "Edit Todo" : "Add Todo"}
+              {isEditing ? 'Edit Todo' : 'Add Todo'}
             </button>
             {isEditing ? (
               <button
@@ -108,11 +109,13 @@ const Todo = () => {
               </button>
             ) : null}
           </div>
-          <div style={{ margin: "12px 0px" }}>
-            <label>Filter Task: </label>
+          {/*2: marginBlock and marginInline  */}
+          {/*4: top, right, bottom and left  */}
+          <div style={{ margin: '12px 0px' }}>
+            <label htmlFor="todo">Filter Task: </label>
             <select
               name="todo"
-              id = "todo"
+              id="todo"
               className="select-filter"
               onChange={filterByStatus}
               defaultValue={filter}
@@ -126,8 +129,8 @@ const Todo = () => {
             <thead>
               <tr>
                 <td>S.N.</td>
-                <td style={{ minWidth: "105px" }}>Things todo</td>
-                <td style={{ minWidth: "75px" }}>Status</td>
+                <td style={{ minWidth: '105px' }}>Things todo</td>
+                <td style={{ minWidth: '75px' }}>Status</td>
                 <td>Mark as done</td>
                 <td>Action</td>
               </tr>
@@ -136,15 +139,17 @@ const Todo = () => {
               {filteredTodos.map((todoItem, index) => {
                 return (
                   <tr key={index}>
-                    <td>{index}</td>
+                    <td>{index + 1}</td>
                     <td>{todoItem.title}</td>
                     <td>
                       <span
                         style={{
-                          padding: "4px 12px",
-                          borderRadius: "16px",
+                          padding: '4px 12px',
+                          borderRadius: '16px',
                           backgroundColor: `${
-                            todoItem.status === "pending" ? "#FCD34D" : "#A7F3D0"
+                            todoItem.status === 'pending'
+                              ? '#FCD34D'
+                              : '#A7F3D0'
                           }`,
                         }}
                       >
@@ -154,7 +159,7 @@ const Todo = () => {
                     <td>
                       <input
                         type="checkbox"
-                        checked={todoItem.status === "pending" ? false : true}
+                        checked={todoItem.status === 'pending' ? false : true}
                         onChange={(e) =>
                           checkBoxHandler(e.target.checked, index)
                         }
