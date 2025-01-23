@@ -6,32 +6,42 @@ export default function Todo() {
       status: 'pending',
     },
   ]);
-  const [inputTodo, setInputTodo] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
-  const [editIndex, setEditIndex] = useState(null);
-  const [filterStatus, setFilterStatus] = useState('all');
+  // const [inputTodo, setInputTodo] = useState('');
+  // const [isEditing, setIsEditing] = useState(false);
+  // const [editIndex, setEditIndex] = useState(null);
+  // const [filterStatus, setFilterStatus] = useState('all');
+
+  const [todoState, setTodoState] = useState({
+    inputTodo: '',
+    isEditing: false,
+    editIndex: null,
+    filterStatus: 'all',
+  });
 
   const onInputChangeHandler = (e) => {
-    setInputTodo(e.target.value);
+    // setInputTodo(e.target.value);
+    setTodoState((prevState) => ({ ...prevState, inputTodo: e.target.value }));
   };
 
   const addTodoHandler = () => {
-    isEditing
+    todoState.isEditing
       ? setTodoList((prevList) => {
           const updatedList = [...prevList];
-          const todoObj = { title: inputTodo, status: 'pending' };
-          updatedList[editIndex] = todoObj;
+          const todoObj = { title: todoState.inputTodo, status: 'pending' };
+          updatedList[todoState.editIndex] = todoObj;
+          setTodoState((prevState) => ({ ...prevState, isEditing: false }));
           return updatedList;
-        }, setIsEditing(false))
+        })
       : setTodoList((prevList) => {
-          if (inputTodo.length) {
-            const todoObj = { title: inputTodo, status: 'pending' };
+          if (todoState.inputTodo.length) {
+            const todoObj = { title: todoState.inputTodo, status: 'pending' };
             return [...prevList, todoObj];
           } else {
             return prevList;
           }
         });
-    setInputTodo('');
+    // setInputTodo('');
+    setTodoState((prevState) => ({ ...prevState, inputTodo: '' }));
   };
 
   const checkBoxChangeHandler = (value, index) => {
@@ -45,9 +55,16 @@ export default function Todo() {
   };
 
   const editTodoHandler = (idx) => {
-    setInputTodo(todoList[idx].title);
-    setIsEditing(true);
-    setEditIndex(idx);
+    // setInputTodo(todoList[idx].title);
+    // setIsEditing(true);
+    // setEditIndex(idx);
+
+    setTodoState((prevState) => ({
+      ...prevState,
+      inputTodo: todoList[idx].title,
+      isEditing: true,
+      editIndex: idx,
+    }));
   };
 
   const deleteTodoHandler = (idx) => {
@@ -56,18 +73,27 @@ export default function Todo() {
   };
 
   const handleOnEditCancelHandler = () => {
-    setIsEditing(false);
-    setInputTodo('');
+    // setIsEditing(false);
+    // setInputTodo('');
+    setTodoState((prevState) => ({
+      ...prevState,
+      inputTodo: '',
+      isEditing: false,
+    }));
   };
 
   const filterChangeHandler = (e) => {
-    setFilterStatus(e.target.value);
+    // setFilterStatus(e.target.value);
+    setTodoState((prevState) => ({
+      ...prevState,
+      filterStatus: e.target.value,
+    }));
   };
 
   const filteredTodos =
-    filterStatus === 'all'
+    todoState.filterStatus === 'all'
       ? todoList
-      : todoList.filter((todo) => todo.status === filterStatus);
+      : todoList.filter((todo) => todo.status === todoState.filterStatus);
 
   return (
     <div className="todo">
@@ -81,7 +107,7 @@ export default function Todo() {
           <div className="todo-input">
             <input
               onChange={onInputChangeHandler}
-              value={inputTodo}
+              value={todoState.inputTodo}
               className="todo-input-text-field"
               placeholder="Enter your task here"
               type="text"
@@ -91,10 +117,10 @@ export default function Todo() {
               className="todo-input-btn"
               onClick={addTodoHandler}
             >
-              {isEditing ? 'Save' : 'Add'}
+              {todoState.isEditing ? 'Save' : 'Add'}
             </button>
 
-            {isEditing ? (
+            {todoState.isEditing ? (
               <button
                 className="cancel-edit-btn"
                 onClick={handleOnEditCancelHandler}
@@ -118,7 +144,7 @@ export default function Todo() {
               <i className="fas fa-tasks"></i> Todo List
             </span>
             <select
-              value={filterStatus}
+              value={todoState.filterStatus}
               onChange={filterChangeHandler}
               className="filter-dropdown"
               style={{
