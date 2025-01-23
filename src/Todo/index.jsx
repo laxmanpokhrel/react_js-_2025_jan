@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useState } from 'react';
 export default function Todo() {
   const [todoList, setTodoList] = useState([
     {
-      title: "Initial Todo",
-      status: "pending",
+      title: 'Initial Todo',
+      status: 'pending',
     },
   ]);
-  const [inputTodo, setInputTodo] = useState("");
+  const [inputTodo, setInputTodo] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
-  const [filterStatus, setFilterStatus] = useState("all");
+  const [filterStatus, setFilterStatus] = useState('all');
 
   const onInputChangeHandler = (e) => {
     setInputTodo(e.target.value);
@@ -19,25 +19,25 @@ export default function Todo() {
     isEditing
       ? setTodoList((prevList) => {
           const updatedList = [...prevList];
-          const todoObj = { title: inputTodo, status: "pending" };
+          const todoObj = { title: inputTodo, status: 'pending' };
           updatedList[editIndex] = todoObj;
           return updatedList;
         }, setIsEditing(false))
       : setTodoList((prevList) => {
           if (inputTodo.length) {
-            const todoObj = { title: inputTodo, status: "pending" };
+            const todoObj = { title: inputTodo, status: 'pending' };
             return [...prevList, todoObj];
           } else {
             return prevList;
           }
         });
-    setInputTodo("");
+    setInputTodo('');
   };
 
   const checkBoxChangeHandler = (value, index) => {
     setTodoList((prevList) => {
       const obj = prevList[index];
-      const newObject = { ...obj, status: value ? "done" : "pending" };
+      const newObject = { ...obj, status: value ? 'done' : 'pending' };
       const updatedList = [...prevList];
       updatedList[index] = newObject;
       return updatedList;
@@ -57,7 +57,7 @@ export default function Todo() {
 
   const handleOnEditCancelHandler = () => {
     setIsEditing(false);
-    setInputTodo("");
+    setInputTodo('');
   };
 
   const filterChangeHandler = (e) => {
@@ -65,7 +65,7 @@ export default function Todo() {
   };
 
   const filteredTodos =
-    filterStatus === "all"
+    filterStatus === 'all'
       ? todoList
       : todoList.filter((todo) => todo.status === filterStatus);
 
@@ -91,7 +91,7 @@ export default function Todo() {
               className="todo-input-btn"
               onClick={addTodoHandler}
             >
-              {isEditing ? "Save" : "Add"}
+              {isEditing ? 'Save' : 'Add'}
             </button>
 
             {isEditing ? (
@@ -109,9 +109,9 @@ export default function Todo() {
           <div
             className="card-header"
             style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }}
           >
             <span>
@@ -122,12 +122,12 @@ export default function Todo() {
               onChange={filterChangeHandler}
               className="filter-dropdown"
               style={{
-                padding: "5px 10px",
-                borderRadius: "10px",
-                border: "1px solid gray",
-                backgroundColor: "#f0f0f0",
-                fontSize: "14px",
-                cursor: "pointer",
+                padding: '5px 10px',
+                borderRadius: '10px',
+                border: '1px solid gray',
+                backgroundColor: '#f0f0f0',
+                fontSize: '14px',
+                cursor: 'pointer',
               }}
             >
               <option value="all">All</option>
@@ -142,24 +142,18 @@ export default function Todo() {
                 key={index}
                 className="todo-list-item"
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
                   textDecoration:
-                    todo.status === "done" ? "line-through" : "none",
+                    todo.status === 'done' ? 'line-through' : 'none',
                   backgroundColor:
-                    todo.status === "done" ? "rgb(162, 247, 162)" : "lightgray",
-                  padding: "10px",
-                  marginBottom: "5px",
-                  borderRadius: "5px",
-                  transition: "transform 0.2s ease-in-out",
+                    todo.status === 'done' ? 'rgb(162, 247, 162)' : 'lightgray',
+                  padding: '10px',
+                  marginBottom: '5px',
+                  borderRadius: '5px',
+                  transition: 'transform 0.2s ease-in-out',
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.transform = "translateY(-3px)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.transform = "translateY(0)")
-                }
               >
                 <input
                   onChange={(e) =>
@@ -168,7 +162,7 @@ export default function Todo() {
                   type="checkbox"
                   id={todo}
                   value={todo}
-                  checked={todo.status === "done"}
+                  checked={todo.status === 'done'}
                 />
 
                 <p>{todo.title}</p>

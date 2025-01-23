@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
   background-color: #f5f5f5;
 }
 
@@ -33,7 +33,6 @@ header {
 .todo-input {
   display: flex;
   gap: 1rem;
-
 }
 
 input.todo-input-text-field {
@@ -87,4 +86,12 @@ button.edit-btn {
 
 button.delete-btn {
   color: #f44336;
+}
+
+.todo-list-item {
+  transition: all 3s ease-in;
+}
+
+.todo-list-item:hover {
+  transform: translateY(-3px);
 }
