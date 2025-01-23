@@ -4,10 +4,11 @@ import Navbar from "../components/Navbar";
 const Todo = () => {
   const [inputTodo, setInputTodo] = useState("");
   const [todoList, setTodoList] = useState([
-    { title: "Initial Todo", status: "pending" },
+    { title: "Make Todo", status: "pending" },
   ]);
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
+  const [filter, setFilter] = useState('all');
 
   const onChangeInputHandler = (e) => {
     setInputTodo(() => {
@@ -54,30 +55,33 @@ const Todo = () => {
   };
 
   const checkBoxHandler = (value, idx) => {
-    if(value){
+    if (value) {
       setTodoList((previousList) => {
         const updateObject = previousList[idx];
-        const newObject = {...updateObject, status: 'done'};
+        const newObject = { ...updateObject, status: "done" };
         const updatedList = [...previousList];
         updatedList[idx] = newObject;
         return updatedList;
       });
-
-    } else{
+    } else {
       setTodoList((previousList) => {
         const updateObject = previousList[idx];
-        const newObject = {...updateObject, status: 'pending'};
+        const newObject = { ...updateObject, status: "pending" };
         const updatedList = [...previousList];
         updatedList[idx] = newObject;
         return updatedList;
       });
-
     }
   };
 
-  const filterByStatus = () =>{
-    console.log(value)
-  }
+  const filterByStatus = (e) => {
+    setFilter(e.target.value)
+  };
+
+  const filteredTodos = filter === 'all'
+                              ? todoList: 
+                              todoList.filter((todo) => todo.status === filter);
+
   return (
     <div className="todo">
       <Navbar />
@@ -106,8 +110,14 @@ const Todo = () => {
           </div>
           <div style={{ margin: "12px 0px" }}>
             <label>Filter Task: </label>
-            <select name="select-status" className="select-filter" onChange={filterByStatus}>
-              <option value="">Select Status</option>
+            <select
+              name="todo"
+              id = "todo"
+              className="select-filter"
+              onChange={filterByStatus}
+              defaultValue={filter}
+            >
+              <option value="all">Select Status</option>
               <option value="pending">Pending</option>
               <option value="done">Done</option>
             </select>
@@ -116,27 +126,25 @@ const Todo = () => {
             <thead>
               <tr>
                 <td>S.N.</td>
-                <td>Things Todo</td>
-                <td style={{ minWidth: "70px" }}>Status</td>
-                <td>Mark Done</td>
+                <td style={{ minWidth: "105px" }}>Things todo</td>
+                <td style={{ minWidth: "75px" }}>Status</td>
+                <td>Mark as done</td>
                 <td>Action</td>
               </tr>
             </thead>
             <tbody>
-              {todoList.map((todoItem, index) => {
+              {filteredTodos.map((todoItem, index) => {
                 return (
-                  <tr key={todoItem}>
+                  <tr key={index}>
                     <td>{index}</td>
                     <td>{todoItem.title}</td>
                     <td>
                       <span
                         style={{
-                          padding: "4px 10px",
-                          borderRadius: "12px",
+                          padding: "4px 12px",
+                          borderRadius: "16px",
                           backgroundColor: `${
-                            todoItem.status === "pending"
-                              ? "orange"
-                              : "lightgreen"
+                            todoItem.status === "pending" ? "#FCD34D" : "#A7F3D0"
                           }`,
                         }}
                       >
@@ -147,7 +155,9 @@ const Todo = () => {
                       <input
                         type="checkbox"
                         checked={todoItem.status === "pending" ? false : true}
-                        onChange={(e) => checkBoxHandler(e.target.checked, index)}
+                        onChange={(e) =>
+                          checkBoxHandler(e.target.checked, index)
+                        }
                         className="checkbox-btn"
                       />
                     </td>
