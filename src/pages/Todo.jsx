@@ -5,7 +5,7 @@ import Filter from "../components/Filter";
 
 const Todo = () => {
   const [todoList, setTodoList] = useState([
-    { title: "Make Todo", status: "pending" },
+    { title: 'Make Todo', status: 'pending' },
   ]);
   const [stateConfig, setStateConfig] = useState({inputTodo:"", isEditing:false, editIndex:null, filter:'all'});
 
@@ -47,7 +47,7 @@ const Todo = () => {
     if (value) {
       setTodoList((previousList) => {
         const updateObject = previousList[idx];
-        const newObject = { ...updateObject, status: "done" };
+        const newObject = { ...updateObject, status: 'done' };
         const updatedList = [...previousList];
         updatedList[idx] = newObject;
         return updatedList;
@@ -55,7 +55,7 @@ const Todo = () => {
     } else {
       setTodoList((previousList) => {
         const updateObject = previousList[idx];
-        const newObject = { ...updateObject, status: "pending" };
+        const newObject = { ...updateObject, status: 'pending' };
         const updatedList = [...previousList];
         updatedList[idx] = newObject;
         return updatedList;
