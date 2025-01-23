@@ -1,11 +1,13 @@
 import { useState } from "react";
+import Navbar from "../components/Navbar";
 
 
 const Todo = () => {
     const [inputTodo, setInputTodo] = useState('');
-    const [todoList, setTodoList] = useState(['Initial Todo']);
+    const [todoList, setTodoList] = useState([{title: 'Initial Todo', status: 'pending'}]);
     const [isEditing, setIsEditing] = useState(false);
     const [editIndex, setEditIndex] = useState(null);
+
     const onChangeInputHandler = (e) =>{
         setInputTodo(() => {
             return e.target.value;
@@ -13,17 +15,26 @@ const Todo = () => {
     };
 
     const addTodoHandler = () => {
-        isEditing?
+       isEditing?
         setTodoList((previousList) => {
             const updatedList = [...previousList];
-            updatedList[editIndex] = inputTodo;
+            const updateTodo = {title: inputTodo, status: 'pending'};
+            updatedList[editIndex] = updateTodo;
+            setIsEditing(false);
+            setEditIndex(null);
             return updatedList;
     })
         :
         setTodoList((previousList) => {
-            if(inputTodo.length>0) return [...previousList, inputTodo];
-            else return previousList
-        });        
+            if(inputTodo.length){
+                const newTodo = {title: inputTodo, status: 'pending'}
+                return [...previousList, newTodo];  
+            } 
+            else{
+                return previousList;
+            }
+        });  
+
         setInputTodo('');
     };
 
@@ -38,16 +49,29 @@ const Todo = () => {
     }
 
     const editTodoHandler = (idx) =>{
-        setInputTodo(todoList[idx])
+        setInputTodo(todoList[idx].title)
         setIsEditing(true)
         setEditIndex(idx)
     }
+
+    const checkBoxHandler = (idx) =>{
+        setTodoList((previousList)=>{
+            const updateList = [...previousList]
+            const updateTodo = {title: updateList[idx].title, 
+                                status: (updateList[idx].status==='pending')?'done':'pending'}
+            updateList[idx] = updateTodo
+            console.log(JSON.stringify(updateTodo))
+            return updateList
+        })
+        
+    }
     return(
         <div className="todo">
-            <h2 className="todo-title">Todo List</h2>
+            <Navbar />
             <div className="container">
                 <div className="container-item">
-                <input className="input-box"
+               <div className="input-area">
+               <input className="input-box"
                     onChange={onChangeInputHandler}
                     value={inputTodo}
                     type="text"
@@ -68,11 +92,14 @@ const Todo = () => {
                     Cancel Editing
                 </button>) : null    
             }
+               </div>
                 <table className="table">
                     <thead>
                         <tr>
                         <td>S.N.</td>
                         <td>Things Todo</td>
+                        <td style={{minWidth:'70px'}}>Status</td>
+                        <td>Mark Done</td>
                         <td>Action</td>
                         </tr>
                     </thead>
@@ -81,7 +108,22 @@ const Todo = () => {
                     return(
                         <tr key={todoItem}>
                         <td>{index}</td>
-                        <td>{todoItem}</td>
+                        <td>{todoItem.title}</td>
+                        <td><span style={{
+                                        padding:"4px 10px", 
+                                        borderRadius:"12px",
+                                        backgroundColor: `${todoItem.status==='pending'?'orange':'lightgreen'}`}}>
+
+                             {todoItem.status}
+                            </span>
+                        </td>
+                        <td>
+                            <input type="checkbox" 
+                                checked={todoItem.status==='pending'? false: true}
+                                onChange={() => checkBoxHandler(index)}
+                                className="checkbox-btn" 
+                            />
+                        </td>
                         <td>
                             <button 
                                 className="btn"

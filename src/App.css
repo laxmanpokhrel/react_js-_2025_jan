@@ -8,9 +8,9 @@
 }
 
 .container{
-  margin: 20px;
   display: flex;
   justify-content: center;
+  
 }
 
 .input-box{
@@ -56,4 +56,15 @@ td{
 
 .btn-danger{
   border: 2px solid red;
+}
+
+.input-area{
+  padding: 20px;
+  border-bottom: 1px solid black;
+}
+
+.checkbox-btn{
+  margin-left: 30px;
+  transform: scale(1.3);
+  cursor: pointer;
 }
