@@ -2,40 +2,33 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 
 const Todo = () => {
-  const [inputTodo, setInputTodo] = useState("");
   const [todoList, setTodoList] = useState([
     { title: "Make Todo", status: "pending" },
   ]);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editIndex, setEditIndex] = useState(null);
-  const [filter, setFilter] = useState('all');
+  const [stateConfig, setStateConfig] = useState({inputTodo:"", isEditing:false, editIndex:null, filter:'all'});
 
   const onChangeInputHandler = (e) => {
-    setInputTodo(() => {
-      return e.target.value;
-    });
+    setStateConfig((prevState)=>({...prevState, inputTodo:e.target.value}));
   };
 
   const addTodoHandler = () => {
-    isEditing
+    stateConfig.isEditing
       ? setTodoList((previousList) => {
           const updatedList = [...previousList];
-          const updateTodo = { title: inputTodo, status: "pending" };
-          updatedList[editIndex] = updateTodo;
-          setIsEditing(false);
-          setEditIndex(null);
+          const updateTodo = { title: stateConfig.inputTodo, status: "pending" };
+          updatedList[stateConfig.editIndex] = updateTodo;
           return updatedList;
         })
       : setTodoList((previousList) => {
-          if (inputTodo.length) {
-            const newTodo = { title: inputTodo, status: "pending" };
+          if (stateConfig.inputTodo.length) {
+            const newTodo = { title: stateConfig.inputTodo, status: "pending" };
             return [...previousList, newTodo];
           } else {
             return previousList;
           }
         });
 
-    setInputTodo("");
+    setStateConfig((prevState)=>({...prevState, inputTodo:"", isEditing:false, editIndex:null}));
   };
 
   const deleteTodoHandler = (idx) => {
@@ -44,14 +37,11 @@ const Todo = () => {
   };
 
   const cancelEditHandler = () => {
-    setIsEditing(false);
-    setInputTodo("");
+    setStateConfig((prevState)=>({...prevState, inputTodo:"", isEditing:false}));
   };
 
   const editTodoHandler = (idx) => {
-    setInputTodo(todoList[idx].title);
-    setIsEditing(true);
-    setEditIndex(idx);
+    setStateConfig((prevState)=>({...prevState, inputTodo:todoList[idx].title, isEditing:true, editIndex: idx}));
   };
 
   const checkBoxHandler = (value, idx) => {
@@ -75,12 +65,12 @@ const Todo = () => {
   };
 
   const filterByStatus = (e) => {
-    setFilter(e.target.value)
+    setStateConfig((prevState)=>({...prevState, filter:e.target.value}))
   };
 
-  const filteredTodos = filter === 'all'
+  const filteredTodos = stateConfig.filter === 'all'
                               ? todoList: 
-                              todoList.filter((todo) => todo.status === filter);
+                              todoList.filter((todo) => todo.status === stateConfig.filter);
 
   return (
     <div className="todo">
@@ -91,14 +81,14 @@ const Todo = () => {
             <input
               className="input-box"
               onChange={onChangeInputHandler}
-              value={inputTodo}
+              value={stateConfig.inputTodo}
               type="text"
               placeholder="Enter your todo..."
             />
             <button className="btn" type="button" onClick={addTodoHandler}>
-              {isEditing ? "Edit Todo" : "Add Todo"}
+              {stateConfig.isEditing ? "Edit Todo" : "Add Todo"}
             </button>
-            {isEditing ? (
+            {stateConfig.isEditing ? (
               <button
                 className="btn btn-danger"
                 type="button"
@@ -115,7 +105,7 @@ const Todo = () => {
               id = "todo"
               className="select-filter"
               onChange={filterByStatus}
-              defaultValue={filter}
+              defaultValue={stateConfig.filter}
             >
               <option value="all">Select Status</option>
               <option value="pending">Pending</option>
