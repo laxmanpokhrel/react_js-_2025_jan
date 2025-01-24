@@ -89,9 +89,9 @@ button.delete-btn {
 }
 
 .todo-list-item {
-  transition: all 3s ease-in;
+  transition: all 0.3s ease-in-out;
 }
-
 .todo-list-item:hover {
+  background-color: #f0f0f0;
   transform: translateY(-3px);
 }

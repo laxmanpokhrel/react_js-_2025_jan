@@ -178,7 +178,6 @@ export default function Todo() {
                   padding: '10px',
                   marginBottom: '5px',
                   borderRadius: '5px',
-                  transition: 'transform 0.2s ease-in-out',
                 }}
               >
                 <input
