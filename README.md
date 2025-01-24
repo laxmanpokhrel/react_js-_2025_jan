@@ -16,3 +16,8 @@ Currently, two official plugins are available:
 # Props
 
 props in react component are analogous to inputs in function
+
+# Container Elements
+
+1. Used for designing generic layouts
+2. Used for default styling or other different default properties

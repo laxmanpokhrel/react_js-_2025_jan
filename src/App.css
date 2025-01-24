@@ -77,3 +77,12 @@ td {
 .select-filter:focus {
   background-color: #f3f4f6;
 }
+
+.wrapper {
+  background-color: #e0f2fe;
+  display: flex;
+  justify-content: center;
+  color: #374151;
+  padding: 10px;
+  box-sizing: border-box;
+}

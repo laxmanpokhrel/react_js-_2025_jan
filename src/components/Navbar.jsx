@@ -1,9 +1,10 @@
+import Wrapper from './Containers/Wrapper';
 const Navbar = () => {
-    return(
-        <div>
-            <h2 className="todo-title">Todo List</h2>
-        </div>
-    )
-}
+  return (
+    <Wrapper>
+      <h2>Todo List</h2>
+    </Wrapper>
+  );
+};
 
 export default Navbar;
