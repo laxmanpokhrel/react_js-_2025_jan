@@ -99,6 +99,13 @@ const Todo = () => {
       ? todoList
       : todoList.filter((todo) => todo.status === stateConfig.filter);
 
+  const filterProps = {
+    filteredTodos,
+    checkBoxHandler,
+    editTodoHandler,
+    deleteTodoHandler,
+  };
+
   return (
     <div className="todo">
       <Navbar />
@@ -126,12 +133,7 @@ const Todo = () => {
             ) : null}
           </div>
           <Filter filterByStatus={filterByStatus} filter={stateConfig.filter} />
-          <DataTable
-            filteredTodos={filteredTodos}
-            checkBoxHandler={checkBoxHandler}
-            editTodoHandler={editTodoHandler}
-            deleteTodoHandler={deleteTodoHandler}
-          />
+          <DataTable {...filterProps} />
         </div>
       </div>
     </div>
