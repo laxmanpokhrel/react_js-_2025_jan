@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import RoundedContainer from '../components/Containers/RoundedContainer';
+import ExpensiveComponent from '../components/ExpensiveComponent';
+
 export default function Todo() {
   const [todoList, setTodoList] = useState([
     {
@@ -98,8 +101,9 @@ export default function Todo() {
   return (
     <div className="todo">
       <header className="todo-header">TODO APP</header>
+
       <div className="container">
-        <div className="card">
+        <RoundedContainer>
           <div className="card-header">
             <i className="fas fa-clipboard-list"></i> Add Todo
           </div>
@@ -129,9 +133,9 @@ export default function Todo() {
               </button>
             ) : null}
           </div>
-        </div>
+        </RoundedContainer>
 
-        <div className="card">
+        <RoundedContainer>
           <div
             className="card-header"
             style={{
@@ -208,7 +212,7 @@ export default function Todo() {
               </li>
             ))}
           </ul>
-        </div>
+        </RoundedContainer>
       </div>
     </div>
   );
