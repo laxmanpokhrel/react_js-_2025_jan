@@ -152,14 +152,7 @@ export default function Todo() {
                   padding: "10px",
                   marginBottom: "5px",
                   borderRadius: "5px",
-                  transition: "transform 0.2s ease-in-out",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.transform = "translateY(-3px)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.transform = "translateY(0)")
-                }
               >
                 <input
                   onChange={(e) =>
