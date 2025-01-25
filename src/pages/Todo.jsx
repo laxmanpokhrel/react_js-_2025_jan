@@ -2,6 +2,11 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import DataTable from '../components/DataTable';
 import Filter from '../components/Filter';
+import React from 'react';
+import Layout from '../components/component/Layout';
+import InputTodo from '../components/InputTodo';
+import Button from '../components/Button';
+import InputArea from '../components/component/InputArea';
 
 const Todo = () => {
   const [todoList, setTodoList] = useState([
@@ -107,36 +112,20 @@ const Todo = () => {
   };
 
   return (
-    <div className="todo">
+    <React.Fragment>
       <Navbar />
-      <div className="container">
-        <div className="container-item">
-          <div className="input-area">
-            <input
-              className="input-box"
-              onChange={onChangeInputHandler}
-              value={stateConfig.inputTodo}
-              type="text"
-              placeholder="Enter your todo..."
-            />
-            <button className="btn" type="button" onClick={addTodoHandler}>
-              {stateConfig.isEditing ? 'Edit Todo' : 'Add Todo'}
-            </button>
+      <Layout>
+        <InputArea> 
+            <InputTodo onChangeInputHandler={onChangeInputHandler} inputTodo={stateConfig.inputTodo}/>
+            <Button action={addTodoHandler} label={stateConfig.isEditing ? 'Edit Todo' : 'Add Todo'}/>
             {stateConfig.isEditing ? (
-              <button
-                className="btn btn-danger"
-                type="button"
-                onClick={cancelEditHandler}
-              >
-                Cancel Editing
-              </button>
+              <Button btn_type={'btn-danger'} label={'Cancel Editing'} action={cancelEditHandler} />
             ) : null}
-          </div>
+          </InputArea>
           <Filter filterByStatus={filterByStatus} filter={stateConfig.filter} />
           <DataTable {...filterProps} />
-        </div>
-      </div>
-    </div>
+      </Layout>
+    </React.Fragment>
   );
 };
 
