@@ -1,6 +1,6 @@
 const Filter = ({ filterByStatus, filter }) => {
   return (
-    <div style={{ margin: '12px 0px' }}>
+    <div className="filter-wrapper">
       <label htmlFor="todo">Filter Task: </label>
       <select
         name="todo"

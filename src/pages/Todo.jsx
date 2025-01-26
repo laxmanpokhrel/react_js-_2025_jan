@@ -117,10 +117,12 @@ const Todo = () => {
       <Layout>
         <InputArea> 
             <InputTodo onChangeInputHandler={onChangeInputHandler} inputTodo={stateConfig.inputTodo}/>
-            <Button action={addTodoHandler} label={stateConfig.isEditing ? 'Edit Todo' : 'Add Todo'}/>
+           <div className='btn-section'>
+           <Button btn_type={'btn-primary'} action={addTodoHandler} label={stateConfig.isEditing ? 'Edit Todo' : 'Add Todo'}/>
             {stateConfig.isEditing ? (
               <Button btn_type={'btn-danger'} label={'Cancel Editing'} action={cancelEditHandler} />
             ) : null}
+           </div>
           </InputArea>
           <Filter filterByStatus={filterByStatus} filter={stateConfig.filter} />
           <DataTable {...filterProps} />
