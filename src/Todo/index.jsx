@@ -1,11 +1,8 @@
 import { useState } from "react";
+import { RoundedContainers } from "../components/Containers/RoundedContainers";
+import TodoItem from "./TodoItem";
 export default function Todo() {
-  const [todoList, setTodoList] = useState([
-    {
-      title: "Initial Todo",
-      status: "pending",
-    },
-  ]);
+  const [todoList, setTodoList] = useState([]);
   const [inputTodo, setInputTodo] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
@@ -73,7 +70,7 @@ export default function Todo() {
     <div className="todo">
       <header className="todo-header">TODO APP</header>
       <div className="container">
-        <div className="card">
+        <RoundedContainers>
           <div className="card-header">
             <i className="fas fa-clipboard-list"></i> Add Todo
           </div>
@@ -103,9 +100,9 @@ export default function Todo() {
               </button>
             ) : null}
           </div>
-        </div>
+        </RoundedContainers>
 
-        <div className="card">
+        <RoundedContainers>
           <div
             className="card-header"
             style={{
@@ -138,51 +135,19 @@ export default function Todo() {
 
           <ul className="todo-list">
             {filteredTodos.map((todo, index) => (
-              <li
+              <TodoItem
                 key={index}
-                className="todo-list-item"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  textDecoration:
-                    todo.status === "done" ? "line-through" : "none",
-                  backgroundColor:
-                    todo.status === "done" ? "rgb(162, 247, 162)" : "lightgray",
-                  padding: "10px",
-                  marginBottom: "5px",
-                  borderRadius: "5px",
-                }}
-              >
-                <input
-                  onChange={(e) =>
-                    checkBoxChangeHandler(e.target.checked, index)
-                  }
-                  type="checkbox"
-                  id={todo}
-                  value={todo}
-                  checked={todo.status === "done"}
-                />
-
-                <p>{todo.title}</p>
-                <button
-                  type="button"
-                  className="edit-btn"
-                  onClick={() => editTodoHandler(index)}
-                >
-                  <i className="fas fa-edit"></i>
-                </button>
-                <button
-                  type="button"
-                  className="delete-btn"
-                  onClick={() => deleteTodoHandler(index)}
-                >
-                  <i className="fas fa-trash"></i>
-                </button>
-              </li>
+                todo={todo}
+                status={todo.status}
+                title={todo.title}
+                index={index}
+                checkBoxChangeHandler={checkBoxChangeHandler}
+                editTodoHandler={editTodoHandler}
+                deleteTodoHandler={deleteTodoHandler}
+              />
             ))}
           </ul>
-        </div>
+        </RoundedContainers>
       </div>
     </div>
   );
