@@ -1,14 +1,14 @@
 import './App.css';
-// import LifeCycleClass from './components/LifeCycleClass';
-// import LifeCycleFunction from './components/LifeCycleFunction';
+import LifeCycleClass from './components/LifeCycleClass';
+import LifeCycleFunction from './components/LifeCycleFunction';
 import Todo from './Todo';
 
 function App() {
   return (
     <div>
-      <Todo />
+      {/* <Todo /> */}
       {/* <LifeCycleClass /> */}
-      {/* <LifeCycleFunction /> */}
+      <LifeCycleFunction />
     </div>
   );
 }
