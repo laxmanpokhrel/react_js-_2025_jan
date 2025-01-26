@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import DataTable from '../components/DataTable';
 import Filter from '../components/Filter';
@@ -9,15 +9,19 @@ import Button from '../components/Button';
 import InputArea from '../components/component/InputArea';
 
 const Todo = () => {
-  const [todoList, setTodoList] = useState([
-    { title: 'Make Todo', status: 'pending' },
-  ]);
+  const [todoList, setTodoList] = useState(()=>{
+    return JSON.parse(window.localStorage.getItem('MY_TODO_LIST_STORAGE')) || [{ title: 'Make Todo', status: 'pending' }]
+  });
   const [stateConfig, setStateConfig] = useState({
     inputTodo: '',
     isEditing: false,
     editIndex: null,
     filter: 'all',
   });
+
+  useEffect(()=>{
+    window.localStorage.setItem('MY_TODO_LIST_STORAGE', JSON.stringify(todoList))
+  } ,[todoList])
 
   const onChangeInputHandler = (e) => {
     setStateConfig((prevState) => ({
@@ -108,7 +112,7 @@ const Todo = () => {
     filteredTodos,
     checkBoxHandler,
     editTodoHandler,
-    deleteTodoHandler,
+    deleteTodoHandler
   };
 
   return (
