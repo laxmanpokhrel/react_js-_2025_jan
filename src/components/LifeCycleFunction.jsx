@@ -6,7 +6,6 @@ const LifeCycleFunction = () => {
   // Mimics componentDidMount and componentWillUnmount
   useEffect(() => {
     console.log('2. useEffect - componentDidMount');
-
     const timer = setInterval(() => {
       console.log('Interval running...');
     }, 1000);

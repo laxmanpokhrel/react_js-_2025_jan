@@ -1,18 +1,38 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RoundedContainer from '../components/Containers/RoundedContainer';
 import ExpensiveComponent from '../components/ExpensiveComponent';
 
 export default function Todo() {
-  const [todoList, setTodoList] = useState([
-    {
-      title: 'Initial Todo',
-      status: 'pending',
-    },
-  ]);
+  // const [todoList, setTodoList] = useState([
+  //   {
+  //     title: 'Initial Todo',
+  //     status: 'pending',
+  //   },
+  // ]);
+
+  const [todoList, setTodoList] = useState(() => {
+    const localStorageTodoString =
+      localStorage.getItem('TODO_LIST') || JSON.stringify([]);
+    console.log(
+      '🚀 ~ const[todoList,setTodoList]=useState ~ localStorageTodoString:',
+      JSON.parse(localStorageTodoString)
+    );
+    return JSON.parse(localStorageTodoString);
+  });
+
   // const [inputTodo, setInputTodo] = useState('');
   // const [isEditing, setIsEditing] = useState(false);
   // const [editIndex, setEditIndex] = useState(null);
   // const [filterStatus, setFilterStatus] = useState('all');
+
+  useEffect(() => {
+    localStorage.setItem('TODO_LIST', JSON.stringify(todoList));
+  }, [todoList]);
+
+  // useEffect(() => {
+  //   const localStorageTodoJSON = JSON.parse(localStorage.getItem('TODO_LIST'));
+  //   console.log('🚀 ~ localStorageTodoJSON:', localStorageTodoJSON);
+  // }, []);
 
   const [todoState, setTodoState] = useState({
     inputTodo: '',
