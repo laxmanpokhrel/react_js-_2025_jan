@@ -147,7 +147,7 @@
   }
 
   .input-box{
-    width: 80%;
+    width: 75%;
     padding: 0.5rem;
     margin-bottom: 12px;
   }
@@ -181,5 +181,17 @@
 }
 .data-row button{
   margin-top: 8px;
+}
+.items{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card{
+  width: 90vw;
+  border: none;
+  margin: 20px;
+  padding: 0px;
 }
 }
