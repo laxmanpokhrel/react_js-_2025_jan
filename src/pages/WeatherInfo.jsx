@@ -1,40 +1,46 @@
-import { useContext, useEffect, useState } from "react";
-import Layout from "../components/component/Layout";
-import { ThemeContext } from "../components/ThemeContext";
-import { WeatherContext } from "../components/WeatherContext";
-import Button from "../components/Button";
+import { useContext } from 'react';
+import Button from '../components/Button';
+import Layout from '../components/component/Layout';
+import { ThemeContext } from '../components/ThemeContext';
+import { WeatherContext } from '../components/WeatherContext';
 
 const WeatherInfo = () => {
-  const { themeMode, setTheme } = useContext(ThemeContext);
+  const { themeMode, toggleTheme } = useContext(ThemeContext);
   const { weatherInfo } = useContext(WeatherContext);
   const keyBeautify = (key) => {
     const capitalizedKey = key
-      .split("_")
-      .map((value, index) => value.charAt(0).toUpperCase() + value.slice(1))
-      .join(" ");
+      .split('_')
+      .map((value) => value.charAt(0).toUpperCase() + value.slice(1))
+      .join(' ');
     return capitalizedKey;
   };
 
-  const changeThemeHandler = () =>{
-    themeMode==='light'?setTheme('dark'):setTheme('light');
-  }
+  const changeThemeHandler = () => {
+    toggleTheme();
+  };
 
   return (
     <Layout>
       <div className="card">
-        <div className={`${themeMode==='light'?"card-head-light": "card-head-dark"}`}>
+        <div
+          className={`${
+            themeMode === 'light' ? 'card-head-light' : 'card-head-dark'
+          }`}
+        >
           <span>Weather Today</span>
-          <Button label={themeMode} btn_type={'btn-primary'} action={changeThemeHandler}/>
-          </div>
+          <Button btnType="btn-primary" onClick={changeThemeHandler}>
+            {themeMode}
+          </Button>
+        </div>
         <div className="card-body">
           {!weatherInfo ? (
-            "Loading..."
+            'Loading...'
           ) : (
             <>
               {Object.entries(weatherInfo).map(([key, value], index) => {
                 return (
                   <div key={index}>
-                    <span className="info-title"> {keyBeautify(key)} : </span>{" "}
+                    <span className="info-title"> {keyBeautify(key)} : </span>{' '}
                     {value}
                   </div>
                 );
