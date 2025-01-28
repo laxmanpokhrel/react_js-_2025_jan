@@ -7,13 +7,13 @@ import WeatherInfo from './pages/WeatherInfo';
 const App = () => {
   return (
     <>
-     <Navbar />
-      <div className='items'>
-      <Todo />
-      <ThemeContextProvider>
-      <WeatherInfo />
-      </ThemeContextProvider>
-    </div>
+      <Navbar />
+      <div className="items">
+        <Todo />
+        <ThemeContextProvider>
+          <WeatherInfo />
+        </ThemeContextProvider>
+      </div>
     </>
   );
 };
