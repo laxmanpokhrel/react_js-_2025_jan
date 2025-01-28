@@ -1,50 +1,45 @@
 import { useContext, useEffect, useState } from "react";
 import Layout from "../components/component/Layout";
 import { ThemeContext } from "../components/ThemeContext";
+import { WeatherContext } from "../components/WeatherContext";
+import Button from "../components/Button";
 
 const WeatherInfo = () => {
-  const [weatherInfo, setWeatherInfo] = useState(null);
-  const {themeMode, setThemeMode} = useContext(ThemeContext);
-  const apiData = async () => {
-    const response = await fetch(
-      "https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873"
-    );
-    const loadedResults = await response.json();
-    return loadedResults.results;
+  const { themeMode, setTheme } = useContext(ThemeContext);
+  const { weatherInfo } = useContext(WeatherContext);
+  const keyBeautify = (key) => {
+    const capitalizedKey = key
+      .split("_")
+      .map((value, index) => value.charAt(0).toUpperCase() + value.slice(1))
+      .join(" ");
+    return capitalizedKey;
   };
 
-  useEffect(() => {
-    (async () => {
-      const responseData = await apiData();
-      setWeatherInfo(responseData);
-    })();
-  }, []);
-
-  const keyBeautify = (key) => {
-    const capitalizedKey = key.split('_').map((value, index) => value.charAt(0).toUpperCase()+ value.slice(1)).join(' ')
-    return capitalizedKey
+  const changeThemeHandler = () =>{
+    themeMode==='light'?setTheme('dark'):setTheme('light');
   }
 
   return (
     <Layout>
       <div className="card">
-
-        {console.log("Theme Mode: ", JSON.stringify(themeMode))}
-
-        <div className="card-head">Weather Today</div>
+        <div className={`${themeMode==='light'?"card-head-light": "card-head-dark"}`}>
+          <span>Weather Today</span>
+          <Button label={themeMode} btn_type={'btn-primary'} action={changeThemeHandler}/>
+          </div>
         <div className="card-body">
-          {weatherInfo ? (
+          {!weatherInfo ? (
+            "Loading..."
+          ) : (
             <>
-              {Object.keys(weatherInfo).map((key, index) => {
+              {Object.entries(weatherInfo).map(([key, value], index) => {
                 return (
                   <div key={index}>
-                    <span className="info-title"> {keyBeautify(key)} : </span> {weatherInfo[`${key}`]}
+                    <span className="info-title"> {keyBeautify(key)} : </span>{" "}
+                    {value}
                   </div>
                 );
               })}
             </>
-          ) : (
-            "Loading..."
           )}
         </div>
       </div>

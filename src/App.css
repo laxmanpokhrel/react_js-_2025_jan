@@ -114,13 +114,26 @@
   padding-left: 20px;
 }
 
-.card-head{
+.card-head-light{
   background-color: #fef3c7;
   padding: 8px 20px;
   border-bottom:  1px solid lightgray;
   font-size: 18px;
   font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  color: #1f1f1f;
  
+}
+.card-head-dark{
+  background-color: #131312;
+  padding: 8px 20px;
+  border-bottom:  1px solid lightgray;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  color: white
 }
 
 .card-body{
