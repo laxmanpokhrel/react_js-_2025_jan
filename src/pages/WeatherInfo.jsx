@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Layout from "../components/component/Layout";
+import { ThemeContext } from "../components/ThemeContext";
 
 const WeatherInfo = () => {
   const [weatherInfo, setWeatherInfo] = useState(null);
+  const {themeMode, setThemeMode} = useContext(ThemeContext);
   const apiData = async () => {
     const response = await fetch(
       "https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873"
@@ -26,6 +28,9 @@ const WeatherInfo = () => {
   return (
     <Layout>
       <div className="card">
+
+        {console.log("Theme Mode: ", JSON.stringify(themeMode))}
+
         <div className="card-head">Weather Today</div>
         <div className="card-body">
           {weatherInfo ? (
