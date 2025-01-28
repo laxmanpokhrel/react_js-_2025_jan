@@ -16,7 +16,7 @@ const DataTable = ({
         </div>
         {filteredTodos.map((todoItem, index) => {
             return (
-        <div className="data-row"> 
+        <div className="data-row" key={index}> 
             <div>
               <span>SN.:</span> {index+1}
             </div>

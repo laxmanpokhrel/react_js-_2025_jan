@@ -117,7 +117,6 @@ const Todo = () => {
 
   return (
     <React.Fragment>
-      <Navbar />
       <Layout>
         <InputArea> 
             <InputTodo onChangeInputHandler={onChangeInputHandler} inputTodo={stateConfig.inputTodo}/>

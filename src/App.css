@@ -23,7 +23,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 20%;
+  width: 40%;
 }
 
 .input-box {
@@ -58,7 +58,7 @@
 }
 
 .filter-wrapper{
-  width: 36%;
+  width: 46%;
   padding: 12px;
   display: flex;
   justify-content: flex-end;
@@ -104,6 +104,38 @@
   transform: scale(1.3);
   cursor: pointer;
  
+}
+
+.card{
+  width: 30vw;
+  margin: 85px 0px;
+  height: 340px;
+  border-left: 1px solid rgb(191, 190, 190);
+  padding-left: 20px;
+}
+
+.card-head{
+  background-color: #fef3c7;
+  padding: 8px 20px;
+  border-bottom:  1px solid lightgray;
+  font-size: 18px;
+  font-weight: 600;
+ 
+}
+
+.card-body{
+  background-color: #fffbeb;
+  padding: 12px 20px;
+}
+.items{
+  display: flex;
+  justify-content: center;
+}
+
+.info-title{
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 @media screen and (max-width:768px) {
