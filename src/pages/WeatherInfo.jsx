@@ -28,8 +28,10 @@ const WeatherInfo = () => {
           }`}
         >
           <span>Weather Today</span>
-          <Button btnType="btn-primary" onClick={changeThemeHandler}>
-            {themeMode}
+          <Button btnType="btn-primary btn-toggle" onClick={changeThemeHandler}>
+            {themeMode === "light" ?<span><i class="fa-regular fa-moon"></i> Dark</span>: <span>
+              <i class="fa-regular fa-lightbulb"></i> Light</span>}
+          
           </Button>
         </div>
         <div className={`card-body ${

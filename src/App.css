@@ -109,7 +109,7 @@
 .card{
   width: 30vw;
   margin: 85px 0px;
-  height: 340px;
+  height: 380px;
   border-left: 1px solid rgb(191, 190, 190);
   padding-left: 20px;
 }
@@ -127,7 +127,7 @@
   
 }
 .card-head-dark{
-  background-color: #171716;
+  background-color: #343431;
   border-bottom:  1px solid white;
   color: white
 }
@@ -153,10 +153,18 @@
 .info-title{
   font-size: 16px;
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 .btn-section{
   display: flex;
+}
+
+.btn-toggle{
+  border-radius: 18px;
+  background-color: #28a745;
+}
+.btn-toggle i{
+  font-size: 16px;
 }
 @media screen and (max-width:768px) {
   .input-area{
