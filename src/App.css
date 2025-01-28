@@ -23,7 +23,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 40%;
+  width: 50%;
 }
 
 .input-box {
@@ -58,7 +58,7 @@
 }
 
 .filter-wrapper{
-  width: 46%;
+  width: 90%;
   padding: 12px;
   display: flex;
   justify-content: flex-end;
@@ -113,33 +113,38 @@
   border-left: 1px solid rgb(191, 190, 190);
   padding-left: 20px;
 }
-
+.card-head{
+  padding: 8px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
 .card-head-light{
   background-color: #fef3c7;
-  padding: 8px 20px;
-  border-bottom:  1px solid lightgray;
-  font-size: 18px;
-  font-weight: 600;
-  display: flex;
-  justify-content: space-between;
-  color: #1f1f1f;
- 
+  border-bottom:  1px solid rgb(137, 136, 136);
+  
 }
 .card-head-dark{
-  background-color: #131312;
-  padding: 8px 20px;
-  border-bottom:  1px solid lightgray;
-  font-size: 18px;
-  font-weight: 600;
-  display: flex;
-  justify-content: space-between;
+  background-color: #171716;
+  border-bottom:  1px solid white;
   color: white
 }
 
 .card-body{
-  background-color: #fffbeb;
   padding: 12px 20px;
 }
+
+.card-body-light{
+  background-color: #fffbeb;
+}
+
+.card-body-dark{
+  background-color: #565656;
+  color: white;
+}
+
 .items{
   display: flex;
   justify-content: center;
@@ -150,7 +155,9 @@
   font-weight: 600;
   line-height: 1.5;
 }
-
+.btn-section{
+  display: flex;
+}
 @media screen and (max-width:768px) {
   .input-area{
     width: 100%;
@@ -164,7 +171,7 @@
     padding: 0.5rem;
     margin-bottom: 12px;
   }
-  
+ 
 .filter-wrapper{
   padding: 12px;
   width: 100%;

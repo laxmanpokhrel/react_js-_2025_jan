@@ -121,9 +121,9 @@ const Todo = () => {
         <InputArea> 
             <InputTodo onChangeInputHandler={onChangeInputHandler} inputTodo={stateConfig.inputTodo}/>
            <div className='btn-section'>
-           <Button btn_type={'btn-primary'} action={addTodoHandler} label={stateConfig.isEditing ? 'Edit Todo' : 'Add Todo'}/>
+           <Button btnType='btn-primary' onClick={addTodoHandler}>{stateConfig.isEditing ? 'Edit Todo' : 'Add Todo'}</Button>
             {stateConfig.isEditing ? (
-              <Button btn_type={'btn-danger'} label={'Cancel Editing'} action={cancelEditHandler} />
+              <Button btnType='btn-danger' onClick={cancelEditHandler}>{'Cancel Editing'}</Button>
             ) : null}
            </div>
           </InputArea>
