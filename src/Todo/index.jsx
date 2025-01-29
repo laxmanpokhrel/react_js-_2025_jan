@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RoundedContainers } from "../components/Containers/RoundedContainers";
 import TodoItem from "./TodoItem";
+import WeatherInfo from "./WeatherInfo";
 export default function Todo() {
-  const [todoList, setTodoList] = useState([]);
+  // const [todoList, setTodoList] = useState([
+  //   {
+  //     title: "Initial Todo",
+  //     status: "pending",
+  //   },
+  // ]);
+  
   const [inputTodo, setInputTodo] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
   const [filterStatus, setFilterStatus] = useState("all");
+  const [todoList, setTodoList] = useState(() => {
+    const data = localStorage.getItem("todos");
+    return data ? JSON.parse(data) : [];
+  });
 
   const onInputChangeHandler = (e) => {
     setInputTodo(e.target.value);
@@ -66,10 +77,16 @@ export default function Todo() {
       ? todoList
       : todoList.filter((todo) => todo.status === filterStatus);
 
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todoList));
+  }, [todoList]);
+
+  
   return (
     <div className="todo">
       <header className="todo-header">TODO APP</header>
       <div className="container">
+         
         <RoundedContainers>
           <div className="card-header">
             <i className="fas fa-clipboard-list"></i> Add Todo

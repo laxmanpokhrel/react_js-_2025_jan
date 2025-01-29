@@ -9,19 +9,21 @@ function TodoItem(props) {
     deleteTodoHandler,
   } = props;
   
-  return (
-  <li
+return (
+  <div  className="todo"> 
+    <li
     className="todo-list-item"
     style={{
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      textDecoration: status === "done" ? "line-through" : "none",
-      backgroundColor: status === "done" ? "rgb(162, 247, 162)" : "lightgray",
+      // textDecoration: status === "done" ? "line-through" : "none",
+      backgroundColor:  "lightgray",
       padding: "10px",
       marginBottom: "5px",
       borderRadius: "5px",
     }}
+
   >
     <input
       onChange={(e) => checkBoxChangeHandler(e.target.checked, index)}
@@ -32,6 +34,21 @@ function TodoItem(props) {
     />
 
     <p>{title}</p>
+
+    <div className="status"
+    style={{
+      display: "inline-block",
+      marginLeft: "6px",
+      padding: "4px 12px",
+      borderRadius: "16px",
+      backgroundColor: `${
+      status === "pending" ? "#FCD34D" : "#A7F3D0"
+      }`,
+    }}
+  >
+     {status}
+  </div>
+
     <button
       type="button"
       className="edit-btn"
@@ -46,7 +63,11 @@ function TodoItem(props) {
     >
       <i className="fas fa-trash"></i>
     </button>
+
+  
+
   </li>
+</div>
 )
 }
 export default TodoItem;

@@ -49,7 +49,23 @@ button {
   border-radius: 1rem;
   cursor: pointer;
 }
-
+.card-head-light{
+  background-color: #fef3c7;
+  border-bottom:  1px solid rgb(137, 136, 136);
+  
+}
+.card-head-dark{
+  background-color: #343431;
+  border-bottom:  1px solid white;
+  color: white
+}
+.btn-toggle{
+  border-radius: 18px;
+  background-color: #28a745;
+}
+.btn-toggle i{
+  font-size: 16px;
+}
 .todo-input-btn {
   background-color: #75a8d2;
   color: var(--icon-color);
@@ -88,6 +104,10 @@ button.edit-btn {
 button.delete-btn {
   color: #f44336;
 }
+button.theme-btn {
+  color: #75a3e3;
+}
+
 
 .todo-list-item{
   transition: all 0.3s  ease-in-out;
@@ -96,3 +116,4 @@ button.delete-btn {
   background-color: #f0f0f0;
   transform: translateY(-3px);
 }
+ 
