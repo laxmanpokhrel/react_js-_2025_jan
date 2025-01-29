@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RoundedContainer from '../components/Containers/RoundedContainer';
 import ExpensiveComponent from '../components/ExpensiveComponent';
+import TodoItem from '../Todo/TodoItem';
 
 export default function Todo() {
   const [todoList, setTodoList] = useState([
@@ -98,6 +99,10 @@ export default function Todo() {
       ? todoList
       : todoList.filter((todo) => todo.status === todoState.filterStatus);
 
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todoList));
+  }, [todoList]);
+
   return (
     <div className="todo">
       <header className="todo-header">TODO APP</header>
@@ -168,48 +173,16 @@ export default function Todo() {
 
           <ul className="todo-list">
             {filteredTodos.map((todo, index) => (
-              <li
+              <TodoItem
                 key={index}
-                className="todo-list-item"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  textDecoration:
-                    todo.status === 'done' ? 'line-through' : 'none',
-                  backgroundColor:
-                    todo.status === 'done' ? 'rgb(162, 247, 162)' : 'lightgray',
-                  padding: '10px',
-                  marginBottom: '5px',
-                  borderRadius: '5px',
-                }}
-              >
-                <input
-                  onChange={(e) =>
-                    checkBoxChangeHandler(e.target.checked, index)
-                  }
-                  type="checkbox"
-                  id={todo}
-                  value={todo}
-                  checked={todo.status === 'done'}
-                />
-
-                <p>{todo.title}</p>
-                <button
-                  type="button"
-                  className="edit-btn"
-                  onClick={() => editTodoHandler(index)}
-                >
-                  <i className="fas fa-edit"></i>
-                </button>
-                <button
-                  type="button"
-                  className="delete-btn"
-                  onClick={() => deleteTodoHandler(index)}
-                >
-                  <i className="fas fa-trash"></i>
-                </button>
-              </li>
+                todo={todo}
+                status={todo.status}
+                title={todo.title}
+                index={index}
+                checkBoxChangeHandler={checkBoxChangeHandler}
+                editTodoHandler={editTodoHandler}
+                deleteTodoHandler={deleteTodoHandler}
+              />
             ))}
           </ul>
         </RoundedContainer>
