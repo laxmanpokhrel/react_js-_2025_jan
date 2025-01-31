@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 .nav {
   background-color: rgb(28, 36, 52);
   display: flex;
@@ -5,7 +7,7 @@
   padding: 10px;
 }
 
-.project-name{
+.project-name {
   font-size: 1.65rem;
   font-weight: 500;
   color: white;
@@ -47,17 +49,17 @@
   opacity: 90%;
 }
 
-.btn-primary{
+.btn-primary {
   background-color: rgb(60, 80, 224);
 }
 .btn-danger {
   background-color: #ef4444;
 }
 .btn:hover {
-  opacity: 100%;;
+  opacity: 100%;
 }
 
-.filter-wrapper{
+.filter-wrapper {
   width: 90%;
   padding: 12px;
   display: flex;
@@ -77,13 +79,13 @@
   background-color: #f3f4f6;
 }
 
-.data-container{
+.data-container {
   display: grid;
   gap: 12px;
 }
 
-
-.data-header, .data-row{
+.data-header,
+.data-row {
   display: grid;
   grid-template-columns: 50px 1fr 120px 120px 160px; /* Define widths for each column */
   align-items: center;
@@ -93,147 +95,145 @@
   padding-bottom: 6px;
 }
 
-.data-row div{
+.data-row div {
   padding-left: 2px;
 }
-.data-row span{
+.data-row span {
   display: none;
 }
 
 .checkbox-btn {
   transform: scale(1.3);
   cursor: pointer;
- 
 }
-hr{
+hr {
   border: 1px solid rgb(236, 233, 233);
 }
 
-.card{
+.card {
   width: 30vw;
   margin: 45px;
   height: 380px;
 }
-.card-head{
+.card-head {
   padding: 8px 20px;
   font-size: 18px;
   font-weight: 600;
   display: flex;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
 }
-.card-head-light{
+.card-head-light {
   background-color: #fef3c7;
-  border-bottom:  1px solid rgb(137, 136, 136);
-  
+  border-bottom: 1px solid rgb(137, 136, 136);
 }
-.card-head-dark{
+.card-head-dark {
   background-color: #343431;
-  border-bottom:  1px solid white;
-  color: white
+  border-bottom: 1px solid white;
+  color: white;
 }
 
-.card-body{
+.card-body {
   padding: 12px 20px;
 }
 
-.card-body-light{
+.card-body-light {
   background-color: #fffbeb;
 }
 
-.card-body-dark{
+.card-body-dark {
   background-color: #565656;
   color: white;
 }
 
-.items{
+.items {
   display: flex;
   justify-content: center;
 }
 
-.info-title{
+.info-title {
   font-size: 16px;
   font-weight: 600;
   line-height: 1.6;
 }
-.btn-section{
+.btn-section {
   display: flex;
 }
 
-select{
+select {
   background-color: rgb(240, 238, 238);
   margin: 10px 40px 10px 4px;
   padding: 8px 12px;
   border: 1px solid black;
-  border-radius:  4px;
+  border-radius: 4px;
 }
 
-.btn-toggle{
+.btn-toggle {
   border-radius: 18px;
   background-color: #28a745;
 }
-.btn-toggle i{
+.btn-toggle i {
   font-size: 16px;
 }
 
-.local-level-wrapper{
+.local-level-wrapper {
   margin: 30px 50px;
 }
 
-@media screen and (max-width:768px) {
-  .input-area{
+@media screen and (max-width: 768px) {
+  .input-area {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .input-box{
+  .input-box {
     width: 75%;
     padding: 0.5rem;
     margin-bottom: 12px;
   }
- 
-.filter-wrapper{
-  padding: 12px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  border-top: 1px solid rgb(221, 216, 216);
-}
 
-.data-header{
-  display: none;
-}
-.data-row{
-  display: block;
-  width: 90vw;
-  margin: 6px;
-}
-.data-row div{
-  padding: 2px;
-}
-.data-row span{
-  display: contents;
-}
-.checkbox-btn{
-  transform: scale(1);
-  margin: 4px ;
-}
-.data-row button{
-  margin-top: 8px;
-}
-.items{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .filter-wrapper {
+    padding: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid rgb(221, 216, 216);
+  }
 
-.card{
-  width: 90vw;
-  border: none;
-  margin: 20px;
-  padding: 0px;
-}
+  .data-header {
+    display: none;
+  }
+  .data-row {
+    display: block;
+    width: 90vw;
+    margin: 6px;
+  }
+  .data-row div {
+    padding: 2px;
+  }
+  .data-row span {
+    display: contents;
+  }
+  .checkbox-btn {
+    transform: scale(1);
+    margin: 4px;
+  }
+  .data-row button {
+    margin-top: 8px;
+  }
+  .items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90vw;
+    border: none;
+    margin: 20px;
+    padding: 0px;
+  }
 }

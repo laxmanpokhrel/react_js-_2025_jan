@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import useAddressFetch from '../hooks/useAddressFetch';
-import Select from '../components/common/Select';
-import { createDropDownData } from '../utils';
+import { useState } from "react";
+import useAddressFetch from "../hooks/useAddressFetch";
+import Select from "../components/common/Select";
+import { createDropDownData } from "../utils";
 
 const LocalLevelInfo = () => {
   const [provinceId, setProvinceId] = useState(null);
@@ -15,7 +15,7 @@ const LocalLevelInfo = () => {
 
   return (
     <div>
-      Province:
+      <p className="p-4 pt-4 text-xl font-bold text-red-800">Province:</p>
       <Select
         id="province"
         name="province"
