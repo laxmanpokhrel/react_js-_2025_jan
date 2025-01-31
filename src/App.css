@@ -105,13 +105,14 @@
   cursor: pointer;
  
 }
+hr{
+  border: 1px solid rgb(236, 233, 233);
+}
 
 .card{
   width: 30vw;
-  margin: 85px 0px;
+  margin: 45px;
   height: 380px;
-  border-left: 1px solid rgb(191, 190, 190);
-  padding-left: 20px;
 }
 .card-head{
   padding: 8px 20px;
@@ -159,6 +160,14 @@
   display: flex;
 }
 
+select{
+  background-color: rgb(240, 238, 238);
+  margin: 10px 40px 10px 4px;
+  padding: 8px 12px;
+  border: 1px solid black;
+  border-radius:  4px;
+}
+
 .btn-toggle{
   border-radius: 18px;
   background-color: #28a745;
@@ -166,6 +175,11 @@
 .btn-toggle i{
   font-size: 16px;
 }
+
+.local-level-wrapper{
+  margin: 30px 50px;
+}
+
 @media screen and (max-width:768px) {
   .input-area{
     width: 100%;

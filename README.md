@@ -1,18 +1,19 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Install npm
+# Install Dependencies
+`npm install`
+# Run Fake API
+`npm install -g json-server`
+`json-server --watch db.json --port 3000`
 
-Currently, two official plugins are available:
+# API 
+Get Provinces:
+GET http://localhost:3000/provinces
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Get Districts by Province:
+Example for Province 1:
+GET http://localhost:3000/districts?provinceId=1
 
-# use cases of lock file
-
-1. Maintain the package inside the project
-2. Maintain the package count by npm
-3. Maintain the consistency of patch/fix version across the development env
-
-# Props
-
-props in react component are analogous to inputs in function
+Get Municipalities by District:
+Example for Morang District:
+GET http://localhost:3000/municipalities?districtId=1

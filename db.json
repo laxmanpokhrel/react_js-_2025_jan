@@ -1,0 +1,20 @@
+{
+    "provinces": [
+      { "id": 1, "name": "Koshi Province" },
+      { "id": 2, "name": "Madhesh Province" },
+      { "id": 3, "name": "Bagmati Province" }
+    ],
+    "districts": [
+      { "id": 1, "name": "Morang", "provinceId": 1 },
+      { "id": 2, "name": "Sunsari", "provinceId": 1 },
+      { "id": 3, "name": "Dhanusha", "provinceId": 2 },
+      { "id": 4, "name": "Kathmandu", "provinceId": 3 }
+    ],
+    "municipalities": [
+      { "id": 1, "name": "Biratnagar Metropolitan City", "districtId": 1 },
+      { "id": 2, "name": "Dharan Sub-Metropolitan City", "districtId": 2 },
+      { "id": 3, "name": "Janakpur Sub-Metropolitan City", "districtId": 3 },
+      { "id": 4, "name": "Kathmandu Metropolitan City", "districtId": 4 }
+    ]
+  }
+  
