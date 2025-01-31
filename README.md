@@ -1,12 +1,14 @@
 
-# Install npm
-# Install Dependencies
+## Install npm
+## Install Dependencies
 `npm install`
-# Run Fake API
+
+## Run Fake API
 `npm install -g json-server`
+
 `json-server --watch db.json --port 3000`
 
-# API 
+## API 
 Get Provinces:
 GET http://localhost:3000/provinces
 

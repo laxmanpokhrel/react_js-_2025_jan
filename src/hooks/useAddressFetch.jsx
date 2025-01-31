@@ -10,7 +10,6 @@ const useAddressFetch = ({ allProvience }) => {
 
   useEffect(() => {
     (async () => {
-      console.log("all provience:", allProvience);
       const response = await fetch(`${base_url}` + allProvience);
       const result = await response.json();
       setProvinence(result);
@@ -30,7 +29,6 @@ const useAddressFetch = ({ allProvience }) => {
 
   useEffect(() => {
     (async () => {
-      console.log("District id:", districtId);
       const response = await fetch(
         `${base_url}/municipalities?districtId=${districtId}`
       );
@@ -41,12 +39,10 @@ const useAddressFetch = ({ allProvience }) => {
 
   const setProvience = (id) => {
     setProvienceId(id);
-    console.log("Prv idL: ", id);
   };
 
   const setDistrict = (id) => {
     setDistrictId(id);
-    console.log("District IDD", id);
   };
   return { provience, setProvience, district, setDistrict, municipality };
 };
